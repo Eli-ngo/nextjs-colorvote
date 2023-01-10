@@ -2,14 +2,12 @@ import mongoose from 'mongoose'
 
 const RoomSchema = new mongoose.Schema({
   name: {
-
     type: String,
     required: [true, 'Please provide a name for this room.'],
     maxlength: [20, 'Name cannot be more than 60 characters'],
   },
   
   code: {
-
     type: String,
     required: [true, "Please provide the room's code"],
     maxlength: [5, ""],
@@ -27,3 +25,4 @@ const RoomSchema = new mongoose.Schema({
 })
 
 export default mongoose.models.Room || mongoose.model('Room', RoomSchema)
+

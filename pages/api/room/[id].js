@@ -1,9 +1,10 @@
 import connectMongo from '../connect';
 import Room from '../../../models/Room';
+import Question from '../../../models/Question';
 
 export default async function handler(req, res) {
   const {
-    query: { id },
+    query: { id, questionId },
     method,
   } = req
 
@@ -12,7 +13,8 @@ export default async function handler(req, res) {
   switch (method) {
     case 'GET' /* Get a model by its ID */:
       try {
-        const room = await Room.findById(id)
+        const room = await Room.findById(id).populate('question')
+        
         if (!room) {
           return res.status(400).json({ success: false })
         }
@@ -24,11 +26,21 @@ export default async function handler(req, res) {
 
     case 'PUT' /* Edit a model by its ID */:
       try {
-        const room = await Room.findByIdAndUpdate(id, req.body, {
-          new: true,
-          runValidators: true,
-        })
-        if (!pet) {
+        if (questionId) {
+            const question = await Question.findById(questionId)
+            var room = await Room.findByIdAndUpdate(id, {
+                $push: { question: question }
+            }, {
+                new: true,
+                runValidators: true,
+            })
+        } else {
+            var room = await Room.findByIdAndUpdate(id, req.body, {
+            new: true,
+            runValidators: true,
+            })
+        }
+        if (!room) {
           return res.status(400).json({ success: false })
         }
         res.status(200).json({ success: true, data: room })
