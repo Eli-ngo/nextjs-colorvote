@@ -17,13 +17,13 @@ import tinycolor from "tinycolor2";
 
 const PickerButton = styled.button`
     /* Button */
-    padding: 16px 32px;
+    padding: 16px 32px 16px 12px;
     border-style: solid;
     border-color: ${(props) =>
         props.theme.colors.pickers[props.color] ||
         props.theme.colors.pickers.default};
     border-radius: 20px;
-    border-width: 3px 3px 3px 20px;
+    border-width: 3px 3px 3px 16px;
 
     /* Text */
     font-family: "Poppins";
@@ -32,7 +32,7 @@ const PickerButton = styled.button`
     font-size: 14px;
     line-height: 21px;
     text-align: center;
-    color: "${(props) => props.theme.colors.text}";
+    color: ${(props) => props.theme.colors.text};
 
     &:hover {
         background-color: ${(props) =>
