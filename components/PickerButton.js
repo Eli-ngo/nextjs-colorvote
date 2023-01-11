@@ -15,7 +15,7 @@ import styled from "styled-components";
 import { getContrast } from "polished";
 import tinycolor from "tinycolor2";
 
-const Button = styled.button`
+const PickerButton = styled.button`
     /* Button */
     padding: 16px 32px;
     border-style: solid;
@@ -52,4 +52,4 @@ const Button = styled.button`
     }
 `;
 
-export default Button;
+export default PickerButton;
