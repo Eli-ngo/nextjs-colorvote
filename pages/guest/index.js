@@ -20,7 +20,7 @@ const Index = () => {
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            gap: 80px;
+            gap: 50px;
 
             &__top{
                 display: flex;
