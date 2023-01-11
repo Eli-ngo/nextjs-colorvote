@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import styled from 'styled-components'
+import PickerButton from '../../components/PickerButton'
 
 const ItemDetails = () => {
 
@@ -19,7 +20,7 @@ const ItemDetails = () => {
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            gap: 80px;
+            gap: 40px;
 
             &__top{
                 text-align: center;
@@ -33,6 +34,9 @@ const ItemDetails = () => {
                 padding: 20px;
                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                 border-radius: 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
 
                 &--option{
                     border: 3px solid black;
@@ -56,7 +60,14 @@ const ItemDetails = () => {
                         <h1 className="container__top--title">Manger des ananas sur une pizza est un crime.</h1>
                     </div>
                     <div className="container__center">
-                        <div className="container__center--option">Tout à fait d'accord</div>
+                        {/* <div className="container__center--option">Tout à fait d'accord</div> */}
+                        <PickerButton color="darkGreen">Tout à fait d'accord</PickerButton>
+                        <PickerButton color="green">D'accord</PickerButton>
+                        <PickerButton color="orange">Mitigé</PickerButton>
+                        <PickerButton color="red">Pas d'accord</PickerButton>
+                        <PickerButton color="darkRed">Pas du tout d'accord</PickerButton>
+                        <PickerButton color="white">Je ne sais pas</PickerButton>
+                        <PickerButton color="black">Ne pas répondre</PickerButton>
                     </div>
                     <div className="container__bottom">
                         <p>1/5</p>
