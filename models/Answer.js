@@ -6,14 +6,6 @@ const AnswerSchema = new mongoose.Schema({
         required: [true, 'Please provide a answer.'],
     },
 
-    question: [
-        {type: mongoose.Schema.Types.ObjectId, ref: 'Question'}
-    ],
-
-    room: [
-        {type: mongoose.Schema.Types.ObjectId, ref: 'Room'}
-    ],
-
     user: [
         {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
     ]

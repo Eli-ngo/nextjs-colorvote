@@ -1,11 +1,10 @@
 import connectMongo from '../connect';
-import Room from '../../../models/Room';
 import Question from '../../../models/Question';
-import User from '../../../models/User';
+import Answer from '../../../models/Answer';
 
 export default async function handler(req, res) {
   const {
-    query: { id, questionId, userId },
+    query: { id, answerId },
     method,
   } = req
 
@@ -14,12 +13,12 @@ export default async function handler(req, res) {
   switch (method) {
     case 'GET' /* Get a model by its ID */:
       try {
-        const room = await Room.findById(id).populate('question')
+        const question = await Question.findById(id).populate('answers')
         
-        if (!room) {
+        if (!question) {
           return res.status(400).json({ success: false })
         }
-        res.status(200).json({ success: true, data: room })
+        res.status(200).json({ success: true, data: question })
       } catch (error) {
         res.status(400).json({ success: false })
       }
@@ -27,31 +26,24 @@ export default async function handler(req, res) {
 
     case 'PUT' /* Edit a model by its ID */:
       try {
-        if (userId) {
-            const user = await User.findById(userId)
-            var room = await Room.findByIdAndUpdate(id, {
-              $push: {
-                users: user
-              }
-            })
-        } else if (questionId) {
-            const question = await Question.findById(questionId)
-            var room = await Room.findByIdAndUpdate(id, {
-                $push: { question: question }
+        if (answerId) {
+            const answer = await Answer.findById(answerId)
+            var question = await Question.findByIdAndUpdate(id, {
+                $push: { answers: answer }
             }, {
                 new: true,
                 runValidators: true,
             })
         } else {
-            var room = await Room.findByIdAndUpdate(id, req.body, {
-            new: true,
-            runValidators: true,
+            var question = await Question.findByIdAndUpdate(id, req.body, {
+                new: true,
+                runValidators: true,
             })
         }
-        if (!room) {
+        if (!question) {
           return res.status(400).json({ success: false })
         }
-        res.status(200).json({ success: true, data: room })
+        res.status(200).json({ success: true, data: question })
       } catch (error) {
         res.status(400).json({ success: false })
       }
@@ -59,8 +51,8 @@ export default async function handler(req, res) {
 
     case 'DELETE' /* Delete a model by its ID */:
       try {
-        const deletedRoom = await Room.deleteOne({ _id: id })
-        if (!deletedRoom) {
+        const deletedQuestion = await Question.deleteOne({ _id: id })
+        if (!deletedQuestion) {
           return res.status(400).json({ success: false })
         }
         res.status(200).json({ success: true, data: {} })

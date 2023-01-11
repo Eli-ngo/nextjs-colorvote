@@ -14,6 +14,10 @@ const RoomSchema = new mongoose.Schema({
     minlength: [5, ""],
   },
 
+  users: [
+    {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  ],
+
   closed: {
     type: Boolean,
     default: false,

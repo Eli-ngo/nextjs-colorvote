@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     case 'GET':
       try {
         const answer = await Answer.find({}) /* find all the data in our database */
-        res.status(200).json({ success: true, data: question })
+        res.status(200).json({ success: true, data: answer })
       } catch (error) {
         res.status(400).json({ success: false })
       }

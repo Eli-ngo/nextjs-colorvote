@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   switch (method) {
     case 'GET':
       try {
-        const question = await Question.find({}) /* find all the data in our database */
+        const question = await Question.find({}).populate('answers') /* find all the data in our database */
         res.status(200).json({ success: true, data: question })
       } catch (error) {
         res.status(400).json({ success: false })
