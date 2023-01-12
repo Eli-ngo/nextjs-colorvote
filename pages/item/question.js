@@ -45,6 +45,10 @@ const ItemDetails = () => {
                     border-radius: 20px;
                 }
             }
+
+            &__bottom{
+                font-weight: 700;
+            }
         }
     `
 
