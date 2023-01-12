@@ -92,7 +92,7 @@ const Dashboard = () => {
                     display: flex;
                     justify-content: center;
                     align-items: flex-start;
-                    gap: 20px;
+                    gap: 30px;
 
                     &__lastsessions{
                         width: 50%;
