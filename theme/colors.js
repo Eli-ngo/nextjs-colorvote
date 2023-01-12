@@ -18,6 +18,11 @@ export const COLORS = {
             primary: "#0D4599",
             validate: "#3D7D3D",
             cancel: "#92121D"
+        },
+        sidebar: {
+            primary: primary,
+            disabled: "#595959",
+            background: "#363636"
         }
     },
 

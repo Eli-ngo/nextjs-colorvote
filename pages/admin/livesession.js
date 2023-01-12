@@ -1,20 +1,17 @@
-import Head from 'next/head'
-import Sidebar from '../../components/Sidebar'
+import Head from "next/head";
+import Sidebar from "../../components/Sidebar";
 
 const LiveSession = () => {
-
-    return(
+    return (
         <>
             <Head>
                 <title>Colorvote ADMIN | Créer une session</title>
             </Head>
             <SessionStyle>
-                <Sidebar />
-
+                <Sidebar active="session" />
             </SessionStyle>
-
         </>
-    )
-}
+    );
+};
 
-export default LiveSession
+export default LiveSession;
