@@ -2,6 +2,10 @@ import Head from 'next/head'
 import Sidebar from '../../components/Sidebar'
 import styled from 'styled-components';
 import Image from 'next/image';
+import { useQuery } from '@tanstack/react-query'
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 const LiveSession = () => {
 
@@ -172,76 +176,125 @@ const LiveSession = () => {
         }
     `;
 
-    return(
-        <>
-            <Head>
-                <title>Colorvote ADMIN | Créer une session</title>
-            </Head>
-            <SessionStyle>
-                <Sidebar />
-                <div className="sidebarRight">
-                    <div className="sidebarRight__top">
-                        <div className="sidebarRight__top--left">
-                            <h1>Session en cours - <span>Le sport à l'école</span> </h1>
-                        </div>
-                        <div className="sidebarRight__top--right">
-                            <button className="sidebarRight__top--right__display">Afficher les résultats</button>
-                            <button className="sidebarRight__top--right__stop">Arrêter la session</button>
-                        </div>
-                    </div>
-                    <div className="sidebarRight__bottom">
-                            <div className="sidebarRight__bottom--left">
-                                <div className="sidebarRight__bottom--left__current">
-                                    <div className="sidebarRight__bottom--left__slides">
-                                        <button> ⬅️ </button>
-                                            <h2>Item 1/5</h2>
-                                        <button> ➡️ </button>
-                                    </div>
-                                    <p className="sidebarRught__bottom--left__sentence">
-                                        Plus de sport à l'école
-                                    </p>
-                                </div>
-                                <div className="sidebarRight__bottom--left__details">
-                                    <h2>Items</h2>
-                                    <ul>
-                                        <li className='sidebarRight__bottom--left__item'>
-                                            <div className="sidebarRight__bottom--left__name">
-                                                <p>1</p>
-                                                <p>Plus de sport à l'école</p>
-                                            </div>
-                                            <div className="sidebarRight__bottom--left__actions">
-                                                <Image src='/disabled_poll.png' width={20} height={20} alt='dashboard poll'/>
-                                                <Image src='/disabled_poll.png' width={20} height={20} alt='dashboard poll'/>
-                                                <Image src='/disabled_poll.png' width={20} height={20} alt='dashboard poll'/>
-                                            </div>
-                                        </li>
-                                        <li className='sidebarRight__bottom--left__item'>
-                                            <div className="sidebarRight__bottom--left__name">
-                                                <p>2</p>
-                                                <p>La vie à l'école et la sécurité routière</p>
-                                            </div>
-                                            <div className="sidebarRight__bottom--left__actions">
-                                                <Image src='/disabled_poll.png' width={20} height={20} alt='dashboard poll'/>
-                                                <Image src='/disabled_poll.png' width={20} height={20} alt='dashboard poll'/>
-                                                <Image src='/disabled_poll.png' width={20} height={20} alt='dashboard poll'/>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="sidebarRight__bottom--right">
-                                <div className="sidebarRight__bottom--right__participants">
-                                    <h2>Participants</h2>
-                                    <p>Aucun participant pour le moment. Affichez le code pour que des participants rejoignent la session.</p>
-                                    <button className="submitButton">Afficher le code</button>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            </SessionStyle>
+    const router = useRouter()
+    const [room, setRoom] = useState()
+    const [currentSlide, setCurrentSlide] = useState(1)
 
-        </>
-    )
+    const getRoom = () => {
+        return fetch(`http://localhost:3000/api/room/63bdef8c2461af1e8aac42c0`)
+        .then(res => res.json().then(data => {
+            console.log(data)
+            setRoom(data.data)
+        }))
+    }
+
+    useEffect(() => {
+        getRoom()
+    }, [])
+
+    const _getRoom = useQuery(['getRoom'], getRoom, {
+        enabled: true,
+        refetchOnWindowFocus: false,
+    })
+
+    const renderItems = () => {
+        return room.question.map((item, index) => {
+            return(
+                <li className='sidebarRight__bottom--left__item'>
+                    <div className="sidebarRight__bottom--left__name">
+                        <p>{index + 1}</p>
+                        <p>{item.question}</p>
+                    </div>
+                    {/* <div className="sidebarRight__bottom--left__actions">
+                        <Image src='/disabled_poll.png' width={20} height={20} alt='dashboard poll'/>
+                        <Image src='/disabled_poll.png' width={20} height={20} alt='dashboard poll'/>
+                        <Image src='/disabled_poll.png' width={20} height={20} alt='dashboard poll'/>
+                    </div> */}
+                </li>
+            )
+        })
+    }
+
+    const renderParticipants = () => {
+        if (room.users.length === 0) {
+            return <p>Aucun participant pour le moment. Affichez le code pour que des participants rejoignent la session.</p>
+        } else {
+            return room.users.map((item, index) => {
+                return(
+                    <p>{item.name}</p>
+                )
+            })
+        }
+    }
+
+    const prevItem = () => {
+        if (currentSlide === 1) {
+            setCurrentSlide(1)
+        } else {
+            setCurrentSlide(currentSlide - 1)
+        }
+    }
+
+    const nextItem = () => {
+        if (currentSlide === room.question.length) {
+            setCurrentSlide(room.question.length)
+        } else {
+            setCurrentSlide(currentSlide + 1)
+        }
+    }
+
+    if (_getRoom.isLoading) {
+        return <div>Loading...</div>
+    } else {
+        return(
+            <>
+                <Head>
+                    <title>Colorvote ADMIN | Créer une session</title>
+                </Head>
+                <SessionStyle>
+                    <Sidebar />
+                    <div className="sidebarRight">
+                        <div className="sidebarRight__top">
+                            <div className="sidebarRight__top--left">
+                                <h1>Session en cours - <span>{room.name}</span> </h1>
+                            </div>
+                            <div className="sidebarRight__top--right">
+                                <button className="sidebarRight__top--right__display">Afficher les résultats</button>
+                                <button className="sidebarRight__top--right__stop">Arrêter la session</button>
+                            </div>
+                        </div>
+                        <div className="sidebarRight__bottom">
+                                <div className="sidebarRight__bottom--left">
+                                    <div className="sidebarRight__bottom--left__current">
+                                        <div className="sidebarRight__bottom--left__slides">
+                                            <button onClick={prevItem}> ⬅️ </button>
+                                                <h2>Question {currentSlide}/{room.question.length}</h2>
+                                            <button onClick={nextItem}> ➡️ </button>
+                                        </div>
+                                        <p className="sidebarRught__bottom--left__sentence">
+                                            {room.question[currentSlide - 1].question}
+                                        </p>
+                                    </div>
+                                    <div className="sidebarRight__bottom--left__details">
+                                        <h2>Items</h2>
+                                        <ul>
+                                            {renderItems()}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div className="sidebarRight__bottom--right">
+                                    <div className="sidebarRight__bottom--right__participants">
+                                        {renderParticipants()}
+                                        <button className="submitButton">Afficher le code</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </SessionStyle>
+    
+            </>
+        )
+    }
 }
 
 export default LiveSession

@@ -77,7 +77,7 @@ const ItemDetails = () => {
         }))
     }
 
-    const getQuestions = useQuery(['getQuestions'], getQuestion, {
+    const _getQuestion = useQuery(['getQuestions'], getQuestion, {
         enabled: true,
         refetchOnWindowFocus: false
     })
@@ -87,7 +87,7 @@ const ItemDetails = () => {
         setAnswer(e.target.value)
     }
 
-    if (getQuestions.isLoading) {
+    if (_getQuestion.isLoading) {
         return <div>Loading...</div>
     } else {
         return(

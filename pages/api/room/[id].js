@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   switch (method) {
     case 'GET' /* Get a model by its ID */:
       try {
-        const room = await Room.findById(id).populate('question')
+        const room = await Room.findById(id).populate('question users')
         
         if (!room) {
           return res.status(400).json({ success: false })

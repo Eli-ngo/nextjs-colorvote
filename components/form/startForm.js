@@ -50,10 +50,10 @@ export const StartForm = () => {
         }))
     }
 
-    const goRoom = useQuery(['enterRoom'], goToRoom, {
+    const _goRoom = useQuery(['enterRoom'], goToRoom, {
         enabled: false
     });
-    const addUser = useQuery(['createUser'], createUser, {
+    const _addUser = useQuery(['createUser'], createUser, {
         enabled: false
     });
 
