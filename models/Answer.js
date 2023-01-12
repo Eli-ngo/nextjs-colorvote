@@ -6,7 +6,7 @@ const AnswerSchema = new mongoose.Schema({
         required: [true, 'Please provide a answer.'],
     },
 
-    user: [
+    users: [
         {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
     ]
 })

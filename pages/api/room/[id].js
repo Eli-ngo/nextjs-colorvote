@@ -27,6 +27,7 @@ export default async function handler(req, res) {
 
     case 'PUT' /* Edit a model by its ID */:
       try {
+        console.log("test", req.body.code)
         if (userId) {
             const user = await User.findById(userId)
             var room = await Room.findByIdAndUpdate(id, {
