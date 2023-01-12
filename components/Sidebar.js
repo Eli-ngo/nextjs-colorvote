@@ -37,6 +37,14 @@ const Sidebar = () => {
                         background: #363636;
                         padding: 16px 46px;
                         border-radius: 20px;
+
+                        &:nth-child(2){
+                            background: none;
+                        }
+
+                        &:last-child{
+                            background: none;
+                        }
                     }
                     &__button{
                         display: flex;
@@ -71,10 +79,11 @@ const Sidebar = () => {
                                 <a href="#">Tableau de bord</a>
                             </li>
                             <li className="container__top--navlinks__button">
-                                <Image src='/active_poll.png' width={20} height={20} alt='dashboard poll'/>
+                                <Image src='/disabled_poll.png' width={20} height={20} alt='dashboard poll'/>
                                 <a href="#">Mes sessions</a>
                             </li>
-                            <li>
+                            <li className="container__top--navlinks__button">
+                                <Image src='/disabled_settings.png' width={20} height={20} alt='dashboard settings'/>
                                 <a href="#">Paramètres</a>
                             </li>
                         </ul>
