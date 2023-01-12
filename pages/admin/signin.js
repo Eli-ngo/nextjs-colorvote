@@ -109,8 +109,8 @@ const SignIn = () => {
                     <div className="containerLeft__container">
                         <form className="containerLeft__container--form">
                             <div className="containerLeft__container--box">
-                                <label>Prénom</label>
-                                <input className='containerLeft__container--input' type="text" placeholder='Votre prénom'/>
+                                <label>Pseudo</label>
+                                <input className='containerLeft__container--input' type="text" placeholder='Votre pseudo'/>
                             </div>
                             <div className="containerLeft__container--box">
                                 <label>Mot de passe</label>
