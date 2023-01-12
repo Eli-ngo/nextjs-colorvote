@@ -1,6 +1,10 @@
 import Head from 'next/head'
 import styled from 'styled-components'
 import PickerButton from '../../components/PickerButton'
+import { useQuery } from '@tanstack/react-query'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { useEffect } from 'react'
 
 const ItemDetails = () => {
 
@@ -51,35 +55,70 @@ const ItemDetails = () => {
             }
         }
     `
+    const router = useRouter()
+    const [question, setQuestion] = useState([])
+    const [answer, setAnswer] = useState()
 
-    return(
-        <>
-            <Head>
-                <title>Colorvote | Item</title>
-            </Head>
-            
-            <ItemStyle>
-                <div className="container">
-                    <div className="container__top">
-                        <h1 className="container__top--title">Manger des ananas sur une pizza est un crime.</h1>
+    useEffect(() => {
+        console.log(answer)
+    }, [question])
+
+    useEffect(() => {
+        getQuestion()
+    }, [])
+
+    const getQuestion = () => {
+        return fetch(`http://localhost:3000/api/room/${router.query.id}`, {
+            method: 'GET',
+        }).then(res => res.json().then(data => {
+            if (data.success) {
+                setQuestion(data.data.question)
+            }
+        }))
+    }
+
+    const getQuestions = useQuery(['getQuestions'], getQuestion, {
+        enabled: true,
+        refetchOnWindowFocus: false
+    })
+
+    const handleVote = (e) => {
+        e.preventDefault()
+        setAnswer(e.target.value)
+    }
+
+    if (getQuestions.isLoading) {
+        return <div>Loading...</div>
+    } else {
+        return(
+            <>
+                <Head>
+                    <title>Colorvote | Item</title>
+                </Head>
+                
+                <ItemStyle>
+                    <div className="container">
+                        <div className="container__top">
+                            <h1 className="container__top--title">{question && question[1]?.question}</h1>
+                        </div>
+                        <div className="container__center">
+                            {/* <div className="container__center--option">Tout à fait d'accord</div> */}
+                            <PickerButton value={0} onClick={handleVote} color="darkGreen">Tout à fait d'accord</PickerButton>
+                            <PickerButton value={1} onClick={handleVote} color="green">D'accord</PickerButton>
+                            <PickerButton value={2} onClick={handleVote} color="orange">Mitigé</PickerButton>
+                            <PickerButton value={3} onClick={handleVote} color="red">Pas d'accord</PickerButton>
+                            <PickerButton value={4} onClick={handleVote} color="darkRed">Pas du tout d'accord</PickerButton>
+                            <PickerButton value={5} onClick={handleVote} color="white">Je ne sais pas</PickerButton>
+                            <PickerButton value={6} onClick={handleVote} color="black">Ne pas répondre</PickerButton>
+                        </div>
+                        <div className="container__bottom">
+                            <p>1/5</p>
+                        </div>
                     </div>
-                    <div className="container__center">
-                        {/* <div className="container__center--option">Tout à fait d'accord</div> */}
-                        <PickerButton color="darkGreen">Tout à fait d'accord</PickerButton>
-                        <PickerButton color="green">D'accord</PickerButton>
-                        <PickerButton color="orange">Mitigé</PickerButton>
-                        <PickerButton color="red">Pas d'accord</PickerButton>
-                        <PickerButton color="darkRed">Pas du tout d'accord</PickerButton>
-                        <PickerButton color="white">Je ne sais pas</PickerButton>
-                        <PickerButton color="black">Ne pas répondre</PickerButton>
-                    </div>
-                    <div className="container__bottom">
-                        <p>1/5</p>
-                    </div>
-                </div>
-            </ItemStyle>
-        </>
-    )
+                </ItemStyle>
+            </>
+        )
+    }
 }
 
 export default ItemDetails

@@ -1,6 +1,8 @@
+import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import styled from 'styled-components'
 import Image from 'next/image'
+import { StartForm } from '../../components/form/startForm'
 
 const Index = () => {
 
@@ -105,17 +107,7 @@ const Index = () => {
                     </div>
 
                     <div className="container__center">
-                        <form className="container__center--form">
-                            <div className="container__center--form__box">
-                                <label>Prénom</label>
-                                <input className='container__center--form__input' type="text" placeholder='Votre prénom'/>
-                            </div>
-                            <div className="container__center--form__box">
-                                <label>Code PIN</label>
-                                <input className='container__center--form__input' type="text" placeholder='Code pin'/>
-                            </div>
-                            <button type='submit' className='submitButton'>Commencer</button>
-                        </form>
+                        <StartForm />
                         <p>Vous êtes l&apos;admin ?</p>
                         {/* <Link href="/auth/signup"><a className='desktopRight__form--suggestion__action'>Par ici</a></Link> */}
                     </div>

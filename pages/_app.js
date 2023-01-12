@@ -1,5 +1,11 @@
 import "../styles/globals.css";
 import { ThemeProvider } from "styled-components";
+import {
+    QueryClient,
+    QueryClientProvider,
+  } from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 
 import { COLORS } from "../theme/colors";
 const theme = {
@@ -9,7 +15,9 @@ const theme = {
 export default function App({ Component, pageProps }) {
     return (
         <ThemeProvider theme={theme}>
-            <Component {...pageProps} />
+            <QueryClientProvider client={queryClient}>
+                <Component {...pageProps} />
+            </QueryClientProvider>
         </ThemeProvider>
     );
 }

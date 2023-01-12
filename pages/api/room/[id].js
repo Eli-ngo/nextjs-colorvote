@@ -27,15 +27,7 @@ export default async function handler(req, res) {
 
     case 'PUT' /* Edit a model by its ID */:
       try {
-        console.log("test", req.body.code)
-        if (userId) {
-            const user = await User.findById(userId)
-            var room = await Room.findByIdAndUpdate(id, {
-              $push: {
-                users: user
-              }
-            })
-        } else if (questionId) {
+        if (questionId) {
             const question = await Question.findById(questionId)
             var room = await Room.findByIdAndUpdate(id, {
                 $push: { question: question }
@@ -43,18 +35,19 @@ export default async function handler(req, res) {
                 new: true,
                 runValidators: true,
             })
+            res.status(200).json({ success: true, data: room, message: "La question a été ajoutée" })
         } else {
             var room = await Room.findByIdAndUpdate(id, req.body, {
             new: true,
             runValidators: true,
             })
+            res.status(200).json({ success: true, data: room, message: "La room a été modifiée" })
         }
         if (!room) {
-          return res.status(400).json({ success: false })
+          return res.status(400).json({ success: false, message: "La room n'a pas été modifiée"})
         }
-        res.status(200).json({ success: true, data: room })
       } catch (error) {
-        res.status(400).json({ success: false })
+        res.status(400).json({ success: false, message: "Une erreur est survenue" })
       }
       break
 

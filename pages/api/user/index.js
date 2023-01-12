@@ -17,16 +17,17 @@ export default async function handler(req, res) {
       break
     case 'POST':
       try {
+        console.log(JSON.parse(req.body))
         const user = await User.create(
-          req.body
+          JSON.parse(req.body)
         ) /* create a new model in the database */
         res.status(201).json({ success: true, data: user })
       } catch (error) {
-        res.status(400).json({ success: false })
+        res.status(400).json({ success: false, message: "Erreur 1" })
       }
       break
     default:
-      res.status(400).json({ success: false })
+      res.status(400).json({ success: false, message: "Erreur" })
       break
   }
 }
