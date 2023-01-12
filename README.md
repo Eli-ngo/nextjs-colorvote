@@ -22,9 +22,7 @@ npm run dev
 yarn dev
 ```
 
-3/
-
-Ouvrir le navigateur avec http://localhost:3000
+3/ Ouvrir le navigateur avec http://localhost:3000
 
 ## Notre stack
 
