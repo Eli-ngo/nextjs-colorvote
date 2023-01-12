@@ -31,12 +31,7 @@ const Button = styled.button`
         }
     }}
     font-family: "Poppins";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 36px;
-    text-align: center;
-    z-index: 2;
+    font-size: 16px;
 
     &:hover {
         ${(props) => {
