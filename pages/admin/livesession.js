@@ -175,7 +175,7 @@ const LiveSession = () => {
     return(
         <>
             <Head>
-                <title>Colorvote ADMIN | Créer une session</title>
+                <title>Colorvote ADMIN | Session en cours</title>
             </Head>
             <SessionStyle>
                 <Sidebar />
