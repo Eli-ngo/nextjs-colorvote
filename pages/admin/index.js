@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Sidebar from '../../components/Sidebar'
 import styled from 'styled-components'
+import Image from 'next/image'
 
 const Dashboard = () => {
 
@@ -13,10 +14,12 @@ const Dashboard = () => {
             background: #f4f4f4;
             width: 85%;
 
+            /* TOP PART */
             &__top{
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                margin-bottom: 20px;
 
                 &--right{
                     display: flex;
@@ -24,9 +27,132 @@ const Dashboard = () => {
 
                     &__display{
                         padding: 10px 40px;
-                        background: red; 
                     }
                 }
+            }
+
+            /* BOTTOM PART */
+            &__bottom{
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+
+                &--bottom1{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 30px;
+
+                    &__startsession{
+                        width: 50%;
+                        padding: 30px 60px;
+                        background: #ffffff;
+                        border-radius: 20px;
+                        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        gap: 20px;
+
+                        h1{
+                            font-size: 1.7rem;
+                            color: #1363DA;
+                        }
+                    }
+                    &__inprogress{
+                        width: 50%;
+                        padding: 30px 60px;
+                        background: #ffffff;
+                        border-radius: 20px;
+                        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        gap: 20px;
+
+                        h1{
+                            font-size: 1.7rem;
+                            color: #1363DA;
+                        }
+                    }
+                }
+                &--bottom2{
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-start;
+                    gap: 20px;
+
+                    &__lastsessions{
+                        width: 50%;
+                        padding: 30px 60px;
+                        background: #ffffff;
+                        border-radius: 20px;
+                        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        gap: 30px;
+
+                        h1{
+                            font-size: 1.7rem;
+                            color: #1363DA;
+                        }
+
+                    }
+
+                    &__session{
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            align-items: center;
+                            gap: 160px;
+
+                            h2{
+                                font-size: 1rem;
+                                color: #1363DA;
+                            }
+                        }
+
+                    &__graph{
+                        width: 50%;
+                        padding: 30px 60px;
+                        background: #ffffff;
+                        border-radius: 20px;
+                        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 30px;
+
+                        h1{
+                            text-align: center;
+                            font-size: 1.7rem;
+                            color: #1363DA;
+                        }
+                    }
+                }
+
+            }
+        }
+        .submitButton{
+            background: #1363DA;
+            color: #ffffff;
+            padding: 10px 60px;
+            text-align: center;
+            border-radius: 10px;
+            font-size: 1rem;
+
+            &__secondary{
+                background: #DCE8F9;
+                color: #1363DA;
+                padding: 10px 60px;
+                text-align: center;
+                border-radius: 10px;
+                font-size: 1rem;
             }
         }
     `
@@ -34,22 +160,62 @@ const Dashboard = () => {
     return(
         <>
             <Head>
-                <title>Colorvote | Dashboard Admin</title>
+                <title>ColorVote ADMIN | Dashboard</title>
             </Head>
             <DashboardStyle>
                 <Sidebar />
                 <div className="sidebarRight">
                     <div className="sidebarRight__top">
                         <div className="sidebarRight__top--left">
-                            <h1>Session en cours - <span>13/01/2023</span> </h1>
+                            <h1>Tableau de bord - <span>13/01/2023</span> </h1>
                         </div>
                         <div className="sidebarRight__top--right">
-                            <button className="siderbarRight__top--right__display">Afficher les matrices</button>
-                            <button className="siderbarRight__top--right__stop">Arrêter la session</button>
+                            <button className="sidebarRight__top--right__display">Afficher les matrices</button>
+                            <button className="sidebarRight__top--right__stop">Arrêter la session</button>
                         </div>
                     </div>
                     <div className="sidebarRight__bottom">
-
+                        <div className="sidebarRight__bottom--bottom1">
+                            <div className="sidebarRight__bottom--bottom1__startsession">
+                                <h1>Démarrer une session</h1>
+                                <p>Créez une nouvelle session en 2 minutes chrono !</p>
+                                <button className="submitButton">Commencer</button>
+                            </div>
+                            <div className="sidebarRight__bottom--bottom1__inprogress">
+                                <h1>Session en cours</h1>
+                                <p>Aucune session en cours pour le moment.</p>
+                                <button className="submitButton">Reprendre</button>
+                            </div>
+                        </div>
+                        <div className="sidebarRight__bottom--bottom2">
+                            <div className="sidebarRight__bottom--bottom2__lastsessions">
+                                <h1>Mes dernières sessions</h1>
+                                <div className="sidebarRight__bottom--bottom2__allsessions">
+                                    <div className="sidebarRight__bottom--bottom2__session">
+                                        <h2>Concerts</h2>
+                                        <p>06/01/2023</p>
+                                    </div>
+                                    <div className="sidebarRight__bottom--bottom2__session">
+                                        <h2>Concerts</h2>
+                                        <p>06/01/2023</p>
+                                    </div>
+                                    <div className="sidebarRight__bottom--bottom2__session">
+                                        <h2>Restaurants</h2>
+                                        <p>03/12/2022</p>
+                                    </div>
+                                    <div className="sidebarRight__bottom--bottom2__session">
+                                        <h2>Animaux</h2>
+                                        <p>22/11/2022</p>
+                                    </div>
+                                </div>
+                                <button className="submitButton__secondary">Voir toutes les sessions</button>
+                            </div>
+                            <div className="sidebarRight__bottom--bottom2__graph">
+                                <h1>Votes de la dernière session - "Concerts"</h1>
+                                <Image src='/piechart.png' width={400} height={280} alt='votes'/>
+                                <button className="submitButton__secondary">Accéder aux résultats</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </DashboardStyle>

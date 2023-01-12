@@ -3,6 +3,7 @@ import Image from "next/image"
 
 const Sidebar = () => {
     const SidebarStyle = styled.div`
+        font-family: 'Poppins', sans-serif;
         color: #ffffff;
         width: 15%;
         
