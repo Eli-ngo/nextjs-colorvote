@@ -49,7 +49,7 @@ const PickerButton = styled.button`
                 : "white";
         }};
         }
-    }
-`;
+    ;
+`
 
 export default PickerButton;
