@@ -6,6 +6,8 @@ const theme = {
     colors: COLORS
 };
 
+import "@fortawesome/fontawesome-free/css/all.css";
+
 export default function App({ Component, pageProps }) {
     return (
         <ThemeProvider theme={theme}>
