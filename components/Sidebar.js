@@ -3,8 +3,13 @@ import Image from "next/image"
 
 const Sidebar = () => {
     const SidebarStyle = styled.div`
+        font-family: 'Poppins', sans-serif;
         color: #ffffff;
         width: 15%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9;
         
         .container{
             height: 100vh;
@@ -36,6 +41,14 @@ const Sidebar = () => {
                         background: #363636;
                         padding: 16px 46px;
                         border-radius: 20px;
+
+                        &:nth-child(2){
+                            background: none;
+                        }
+
+                        &:last-child{
+                            background: none;
+                        }
                     }
                     &__button{
                         display: flex;
@@ -48,9 +61,30 @@ const Sidebar = () => {
 
             &__bottom{
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                gap: 8px;
+                gap: 40px;
+
+                &--signout{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 8px;
+
+                    p{
+                        color: #595959;
+                    }
+                }
+
+                &--admin{
+                    p{
+                        font-size: 1.2rem;
+                        span{
+                            font-weight: 700;
+                        }
+                    }
+                }
             }
         }
     `
@@ -60,7 +94,7 @@ const Sidebar = () => {
             <div className="container">
                 <div className="container__top">
                     <div className="container__top--header">
-                        <Image src='/bg_sidebar.png' width={240} height={190} alt='colorvote logo' className='container__top--logo'/>
+                        <Image src='/bg_sidebar.png' width={260} height={170} alt='colorvote logo' className='container__top--logo'/>
                         <h1 className="container__top--title">ColorVote</h1>
                     </div>
                     <div className="container__top--navlinks">
@@ -70,18 +104,24 @@ const Sidebar = () => {
                                 <a href="#">Tableau de bord</a>
                             </li>
                             <li className="container__top--navlinks__button">
-                                <Image src='/active_poll.png' width={20} height={20} alt='dashboard poll'/>
+                                <Image src='/disabled_poll.png' width={20} height={20} alt='dashboard poll'/>
                                 <a href="#">Mes sessions</a>
                             </li>
-                            <li>
+                            <li className="container__top--navlinks__button">
+                                <Image src='/disabled_settings.png' width={20} height={20} alt='dashboard settings'/>
                                 <a href="#">Paramètres</a>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div className="container__bottom">
-                    <Image src='/disabled_signout.png' width={20} height={20} alt='dashboard signout'/>
-                    <p>Déconnexion</p>
+                    <div className="container__bottom--admin">
+                        <p>Bonjour <span>Hugo </span>!</p>
+                    </div>
+                    <div className="container__bottom--signout">
+                        <Image src='/disabled_signout.png' width={20} height={20} alt='dashboard signout'/>
+                        <p>Déconnexion</p>
+                    </div>
                 </div>
             </div>
         </SidebarStyle>
