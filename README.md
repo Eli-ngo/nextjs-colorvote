@@ -26,7 +26,7 @@ yarn dev
 
 ## Notre stack
 
-Ce projet utilise comme langage de front et back NextJS et comme base de donnée MongoDB.
+Ce projet utilise le langage NextJS pour le front et le back. Comme base de donnée MongoDB.
 
 ## Nos pratiques pour mener à bien ce projet
 
