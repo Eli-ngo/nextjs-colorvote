@@ -8,17 +8,17 @@ npm run dev
 yarn dev
 ```
 
-Ouvrir le navigateur avec [http://localhost:3000](http://localhost:3000
+Ouvrir le navigateur avec http://localhost:3000
 
-#Notre stack
+## Notre stack
 
 Ce projet utilise comme langage de front et back NextJS et comme base de donnée MongoDB.
 
-##Nos pratiques pour mener à bien ce projet
+## Nos pratiques pour mener à bien ce projet
 
 Nous avions créee 4 branches en tout pour éviter le plus de conflits possibles : master - back - front-ellie - front-sarah. La branche Master étant notre branche de production
 
-##Notre groupe est composé de :
+## Notre groupe est composé de :
 - Yassine Souissi
 - Elisabeth Ngo
 - Sarah Hitier
