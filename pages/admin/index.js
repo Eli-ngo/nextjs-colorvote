@@ -29,6 +29,14 @@ const Dashboard = () => {
                         padding: 10px 40px;
                     }
                 }
+
+                &--left{
+                    h1{
+                        span{
+                            font-weight: lighter;
+                        }
+                    }
+                }
             }
 
             /* BOTTOM PART */
@@ -168,10 +176,6 @@ const Dashboard = () => {
                     <div className="sidebarRight__top">
                         <div className="sidebarRight__top--left">
                             <h1>Tableau de bord - <span>13/01/2023</span> </h1>
-                        </div>
-                        <div className="sidebarRight__top--right">
-                            <button className="sidebarRight__top--right__display">Afficher les matrices</button>
-                            <button className="sidebarRight__top--right__stop">Arrêter la session</button>
                         </div>
                     </div>
                     <div className="sidebarRight__bottom">

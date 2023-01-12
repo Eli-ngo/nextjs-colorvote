@@ -57,9 +57,30 @@ const Sidebar = () => {
 
             &__bottom{
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                gap: 8px;
+                gap: 40px;
+
+                &--signout{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 8px;
+
+                    p{
+                        color: #595959;
+                    }
+                }
+
+                &--admin{
+                    p{
+                        font-size: 1.2rem;
+                        span{
+                            font-weight: 700;
+                        }
+                    }
+                }
             }
         }
     `
@@ -90,8 +111,13 @@ const Sidebar = () => {
                     </div>
                 </div>
                 <div className="container__bottom">
-                    <Image src='/disabled_signout.png' width={20} height={20} alt='dashboard signout'/>
-                    <p>Déconnexion</p>
+                    <div className="container__bottom--admin">
+                        <p>Bonjour <span>Hugo </span>!</p>
+                    </div>
+                    <div className="container__bottom--signout">
+                        <Image src='/disabled_signout.png' width={20} height={20} alt='dashboard signout'/>
+                        <p>Déconnexion</p>
+                    </div>
                 </div>
             </div>
         </SidebarStyle>
