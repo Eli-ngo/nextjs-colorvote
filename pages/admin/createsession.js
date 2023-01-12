@@ -122,30 +122,30 @@ const CreateSession = () => {
             </Head>
             <CreateStyle>
                 <Sidebar />
-                    <div className="sidebarRight">
-                        <div className="sidebarRight__top">
-                            <div className="sidebarRight__top--left">
-                                <h1>Nouvelle session - <span>Ma session du 13/01</span> </h1>
-                                <Image src='/edit.png' width={24} height={24} alt='modifier le nom de la session'/>
-                            </div>
-                            <div className="sidebarRight__top--right">
-                                <button className="sidebarRight__top--right__save">Sauvegarder</button>
-                                <button className="sidebarRight__top--right__start">Démarrer la session</button>
-                            </div>
+                <div className="sidebarRight">
+                    <div className="sidebarRight__top">
+                        <div className="sidebarRight__top--left">
+                            <h1>Nouvelle session - <span>Ma session du 13/01</span> </h1>
+                            <Image src='/edit.png' width={24} height={24} alt='modifier le nom de la session'/>
                         </div>
-                        <div className="sidebarRight__bottom">
-                            <div className="sidebarRight__bottom--items">
-                                <h1>Items</h1>
-                                <p>Aucun item pour le moment. Vous pouvez créer les items avant de démarrer une session ou pendant celle-ci.</p>
-                                <button className="submitButton">Ajouter des items</button>
-                            </div>
-                            <div className="sidebarRight__bottom--participants">
-                                <h1>Participants</h1>
-                                <p>Démarrez la session pour que les participants puissent la rejoindre.</p>
-                                <button className="submitButton">Afficher le code</button>
-                            </div>
+                        <div className="sidebarRight__top--right">
+                            <button className="sidebarRight__top--right__save">Sauvegarder</button>
+                            <button className="sidebarRight__top--right__start">Démarrer la session</button>
                         </div>
                     </div>
+                    <div className="sidebarRight__bottom">
+                        <div className="sidebarRight__bottom--items">
+                            <h1>Items</h1>
+                            <p>Aucun item pour le moment. Vous pouvez créer les items avant de démarrer une session ou pendant celle-ci.</p>
+                            <button className="submitButton">Ajouter des items</button>
+                        </div>
+                        <div className="sidebarRight__bottom--participants">
+                            <h1>Participants</h1>
+                            <p>Démarrez la session pour que les participants puissent la rejoindre.</p>
+                            <button className="submitButton">Afficher le code</button>
+                        </div>
+                    </div>
+                </div>
             </CreateStyle>
 
         </>
