@@ -1,7 +1,25 @@
+const primary = "#1363DA";
+const secondary = "#1363DA26";
+
 export const COLORS = {
-    primary: "#1363DA",
+    primary: primary,
     background: "#F4F4F4",
     text: "#1E1E1E",
+
+    /* BUTTONS */
+    buttons: {
+        default: {
+            primary: primary,
+            secondary: secondary,
+            validate: "#57B257",
+            cancel: "#D11A2A"
+        },
+        hover: {
+            primary: "#0D4599",
+            validate: "#3D7D3D",
+            cancel: "#92121D"
+        }
+    },
 
     /* INPUT */
     input: {
