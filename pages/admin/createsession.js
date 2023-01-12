@@ -2,8 +2,14 @@ import Head from 'next/head'
 import Sidebar from '../../components/Sidebar'
 import styled from 'styled-components';
 import Image from 'next/image';
+import ModalRenamesession from '../../components/ModalRenamesession';
+import ModalItem from '../../components/ModalItem';
+import { useState } from 'react';
 
 const CreateSession = () => {
+
+    const [ openModal, setOpenModal ] = useState(false);
+    const [ openItem, setOpenItem ] = useState(false);
 
     const CreateStyle = styled.div`
         display: flex;
@@ -121,12 +127,17 @@ const CreateSession = () => {
                 <title>Colorvote ADMIN | Créer une session</title>
             </Head>
             <CreateStyle>
+                {openModal && <ModalRenamesession closeModal={setOpenModal}/>}
+                {openItem && <ModalItem closeItem={setOpenItem}/>}
                 <Sidebar />
                 <div className="sidebarRight">
                     <div className="sidebarRight__top">
                         <div className="sidebarRight__top--left">
                             <h1>Nouvelle session - <span>Ma session du 13/01</span> </h1>
-                            <Image src='/edit.png' width={24} height={24} alt='modifier le nom de la session'/>
+                            <button className="openModalBtn" onClick={() => {setOpenModal(true)}}>
+                                <Image src='/edit.png' width={24} height={24} alt='modifier le nom de la session'/>
+                            </button>
+                            
                         </div>
                         <div className="sidebarRight__top--right">
                             <button className="sidebarRight__top--right__save">Sauvegarder</button>
@@ -137,7 +148,7 @@ const CreateSession = () => {
                         <div className="sidebarRight__bottom--items">
                             <h1>Items</h1>
                             <p>Aucun item pour le moment. Vous pouvez créer les items avant de démarrer une session ou pendant celle-ci.</p>
-                            <button className="submitButton">Ajouter des items</button>
+                            <button className="submitButton" onClick={() => {setOpenItem(true)}}>Ajouter des items</button>
                         </div>
                         <div className="sidebarRight__bottom--participants">
                             <h1>Participants</h1>
