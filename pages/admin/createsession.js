@@ -12,6 +12,8 @@ const CreateSession = () => {
             padding: 40px;
             background: #f4f4f4;
             width: 85%;
+            margin-left: 15%;
+            height: 100vh;
 
             &__top{
                 display: flex;

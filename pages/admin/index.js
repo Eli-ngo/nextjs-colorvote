@@ -10,9 +10,11 @@ const Dashboard = () => {
         font-family: 'Poppins', sans-serif;
 
         .sidebarRight{
-            padding: 40px;
             background: #f4f4f4;
+            padding: 40px;
             width: 85%;
+            margin-left: 15%;
+            height: 100vh;
 
             /* TOP PART */
             &__top{

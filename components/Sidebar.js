@@ -6,6 +6,10 @@ const Sidebar = () => {
         font-family: 'Poppins', sans-serif;
         color: #ffffff;
         width: 15%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9;
         
         .container{
             height: 100vh;
@@ -90,7 +94,7 @@ const Sidebar = () => {
             <div className="container">
                 <div className="container__top">
                     <div className="container__top--header">
-                        <Image src='/bg_sidebar.png' width={240} height={190} alt='colorvote logo' className='container__top--logo'/>
+                        <Image src='/bg_sidebar.png' width={260} height={170} alt='colorvote logo' className='container__top--logo'/>
                         <h1 className="container__top--title">ColorVote</h1>
                     </div>
                     <div className="container__top--navlinks">
