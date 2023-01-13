@@ -179,6 +179,7 @@ const LiveSession = () => {
     const router = useRouter()
     const [room, setRoom] = useState()
     const [currentSlide, setCurrentSlide] = useState(1)
+    const [display, setDisplay] = useState(false)
 
     const getRoom = () => {
         return fetch(`../../api/room/63bdef8c2461af1e8aac42c0`)
@@ -187,7 +188,12 @@ const LiveSession = () => {
         }))
     }
 
-    useEffect(() => socketInitializer(), [])
+    useEffect(() => {
+        socketInitializer()
+        return () => {
+            console.log("This will be logged on unmount");
+          }
+    }, [])
 
     const socketInitializer = async () => {
         await fetch('../../api/socket')
@@ -233,13 +239,21 @@ const LiveSession = () => {
         }
     }
 
-    const prevItem = () => {
-        if (currentSlide === 1) {
-            setCurrentSlide(1)
-        } else {
-            setCurrentSlide(currentSlide - 1)
-            socket.emit('itemSlide', currentSlide)
-        }
+    // const prevItem = () => {
+    //     if (currentSlide === 1) {
+    //         setCurrentSlide(1)
+    //     } else {
+    //         setCurrentSlide(currentSlide - 1)
+    //         socket.emit('itemSlide', currentSlide)
+    //     }
+    // }
+
+    const goToResult = () => {
+        console.log('go to result', room)
+        router.push({
+            pathname: '/admin/results',
+            query: { id: room._id },
+        })
     }
 
     const nextItem = () => {
@@ -249,6 +263,10 @@ const LiveSession = () => {
             setCurrentSlide(currentSlide + 1)
             socket.emit('itemSlide', currentSlide)
         }
+    }
+
+    const displayCode = () => {
+        setDisplay(!display)
     }
 
     if (_getRoom.isLoading) {
@@ -267,7 +285,7 @@ const LiveSession = () => {
                                 <h1>Session en cours - <span>{room.name}</span> </h1>
                             </div>
                             <div className="sidebarRight__top--right">
-                                <button className="sidebarRight__top--right__display">Afficher les résultats</button>
+                                <button onClick={goToResult} className="sidebarRight__top--right__display">Afficher les résultats</button>
                                 <button className="sidebarRight__top--right__stop">Arrêter la session</button>
                             </div>
                         </div>
@@ -293,7 +311,9 @@ const LiveSession = () => {
                                 <div className="sidebarRight__bottom--right">
                                     <div className="sidebarRight__bottom--right__participants">
                                         {renderParticipants()}
-                                        <button className="submitButton">Afficher le code</button>
+                                        {
+                                            display ? <b>{room.code}</b> : <button onClick={displayCode} className="submitButton">Afficher le code</button>
+                                        }
                                     </div>
                                 </div>
                             </div>

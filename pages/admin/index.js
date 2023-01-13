@@ -2,6 +2,7 @@ import Head from "next/head";
 import Sidebar from "../../components/Sidebar";
 import styled from "styled-components";
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 
 const Dashboard = () => {
     const DashboardStyle = styled.div`
@@ -166,6 +167,12 @@ const Dashboard = () => {
         }
     `;
 
+    const router = useRouter();
+
+    const goToCreate = () => {
+        router.push('/admin/createsession');
+    }
+
     return (
         <>
             <Head>
@@ -189,7 +196,7 @@ const Dashboard = () => {
                                     Créez une nouvelle session en 2 minutes
                                     chrono !
                                 </p>
-                                <button className="submitButton">
+                                <button onClick={goToCreate} className="submitButton">
                                     Commencer
                                 </button>
                             </div>

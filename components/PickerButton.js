@@ -34,7 +34,7 @@ const PickerButton = styled.button`
     text-align: center;
     color: ${(props) => props.theme.colors.text};
 
-    &:hover {
+    &:hover, &.active {
         background-color: ${(props) =>
             props.theme.colors.pickers[props.color] ||
             props.theme.colors.pickers.default};
@@ -52,4 +52,11 @@ const PickerButton = styled.button`
     ;
 `
 
-export default PickerButton;
+
+const PickButton = ({ children, ...props }) => (
+    <PickerButton className={props.active === true ? "active" : ""} {...props}>
+        {children}
+    </PickerButton>
+);
+
+export default PickButton;

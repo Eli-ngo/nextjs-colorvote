@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styled from 'styled-components'
-import PickerButton from '../../components/PickerButton'
+import PickButton from '../../components/PickerButton'
 import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
@@ -62,6 +62,11 @@ const ItemDetails = () => {
     const [question, setQuestion] = useState([])
     const [answer, setAnswer] = useState()
     const [currentQuestion, setCurrentQuestion] = useState(0)
+    // const [answer1, setAnswer1] = useState(false)
+    // const [answer2, setAnswer1] = useState(false)
+    // const [answer1, setAnswer1] = useState(false)
+    // const [answer1, setAnswer1] = useState(false)
+    // const [answer1, setAnswer1] = useState(false)
 
     useEffect(() => {
         getQuestion()
@@ -84,6 +89,7 @@ const ItemDetails = () => {
         
         socket.on('updateSlide', msg => {
             setCurrentQuestion(msg)
+            setAnswer(null)
         })
     }
 
@@ -134,13 +140,13 @@ const ItemDetails = () => {
                         </div>
                         <div className="container__center">
                             {/* <div className="container__center--option">Tout à fait d'accord</div> */}
-                            <PickerButton value={0} onClick={handleVote} color="darkGreen">Tout à fait d'accord</PickerButton>
-                            <PickerButton value={1} onClick={handleVote} color="green">D'accord</PickerButton>
-                            <PickerButton value={2} onClick={handleVote} color="orange">Mitigé</PickerButton>
-                            <PickerButton value={3} onClick={handleVote} color="red">Pas d'accord</PickerButton>
-                            <PickerButton value={4} onClick={handleVote} color="darkRed">Pas du tout d'accord</PickerButton>
-                            <PickerButton value={5} onClick={handleVote} color="white">Je ne sais pas</PickerButton>
-                            <PickerButton value={6} onClick={handleVote} color="black">Ne pas répondre</PickerButton>
+                            <PickButton active={answer == 0} value={0} onClick={handleVote} color="darkGreen">Tout à fait d'accord</PickButton>
+                            <PickButton active={answer == 1} value={1} onClick={handleVote} color="green">D'accord</PickButton>
+                            <PickButton active={answer == 2} value={2} onClick={handleVote} color="orange">Mitigé</PickButton>
+                            <PickButton active={answer == 3} value={3} onClick={handleVote} color="red">Pas d'accord</PickButton>
+                            <PickButton active={answer == 4} value={4} onClick={handleVote} color="darkRed">Pas du tout d'accord</PickButton>
+                            <PickButton active={answer == 5} value={5} onClick={handleVote} color="white">Je ne sais pas</PickButton>
+                            <PickButton active={answer == 6} value={6} onClick={handleVote} color="black">Ne pas répondre</PickButton>
                         </div>
                         <div className="container__bottom">
                             <p>{currentQuestion + 1}/{question.length}</p>
