@@ -3,7 +3,8 @@ Création d'une PWA destinée à une association qui utilise la méthode de l'Ab
 ## Comment ça marche
 
 L'application possède 2 interfaces : 
-1 /Une interface pour un invité sur laquelle il peut voter en inscrivant un code PIN que l'admin lui aura au préalable communiqué. L'invité devra ensuite répondre à plusieurs anecdotes/questions qui défilent et clique sur une couleur pour donner son avis.
+
+1/ Une interface pour un invité sur laquelle il peut voter en inscrivant un code PIN que l'admin lui aura au préalable communiqué. L'invité devra ensuite répondre à plusieurs anecdotes/questions qui défilent et clique sur une couleur pour donner son avis.
 
 
 - Vert foncé s'il est tout à fait d'accord
