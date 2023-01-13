@@ -5,6 +5,9 @@ import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import io from 'Socket.IO-client'
+
+let socket;
 
 const ItemDetails = () => {
 
@@ -58,21 +61,43 @@ const ItemDetails = () => {
     const router = useRouter()
     const [question, setQuestion] = useState([])
     const [answer, setAnswer] = useState()
-
-    useEffect(() => {
-        console.log(answer)
-    }, [question])
+    const [currentQuestion, setCurrentQuestion] = useState(0)
 
     useEffect(() => {
         getQuestion()
+        socketInitializer()
     }, [])
 
     const getQuestion = () => {
-        return fetch(`http://localhost:3000/api/room/${router.query.id}`, {
+        return fetch(`../../api/room/${router.query.id}`, {
             method: 'GET',
         }).then(res => res.json().then(data => {
             if (data.success) {
                 setQuestion(data.data.question)
+            }
+        }))
+    }
+
+    const socketInitializer = async () => {
+        await fetch('../../api/socket')
+        socket = io()
+        
+        socket.on('updateSlide', msg => {
+            setCurrentQuestion(msg)
+        })
+    }
+
+    const setVote = (e) => {
+        return fetch(`../../api/answer/`, {
+            method: 'POST',
+            body: JSON.stringify({
+                answer: e,
+                users: router.query.userId,
+                id: question[currentQuestion]._id
+            })
+        }).then(res => res.json().then(data => {
+            if (data.success) {
+                console.log(data)
             }
         }))
     }
@@ -82,9 +107,15 @@ const ItemDetails = () => {
         refetchOnWindowFocus: false
     })
 
+    const _setAnswer = useQuery(['setAnswer'], setVote, {
+        enabled: false,
+        refetchOnWindowFocus: false
+    })
+
     const handleVote = (e) => {
         e.preventDefault()
         setAnswer(e.target.value)
+        setVote(e.target.value)
     }
 
     if (_getQuestion.isLoading) {
@@ -99,7 +130,7 @@ const ItemDetails = () => {
                 <ItemStyle>
                     <div className="container">
                         <div className="container__top">
-                            <h1 className="container__top--title">{question && question[1]?.question}</h1>
+                            <h1 className="container__top--title">{question && question[currentQuestion]?.question}</h1>
                         </div>
                         <div className="container__center">
                             {/* <div className="container__center--option">Tout à fait d'accord</div> */}
@@ -112,7 +143,7 @@ const ItemDetails = () => {
                             <PickerButton value={6} onClick={handleVote} color="black">Ne pas répondre</PickerButton>
                         </div>
                         <div className="container__bottom">
-                            <p>1/5</p>
+                            <p>{currentQuestion + 1}/{question.length}</p>
                         </div>
                     </div>
                 </ItemStyle>

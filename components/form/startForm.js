@@ -18,7 +18,7 @@ export const StartForm = () => {
     }
 
     const createUser = () => {
-        return fetch("http://localhost:3000/api/user", {
+        return fetch("../../api/user", {
             method: 'POST',
             body: JSON.stringify({
                 name: pseudo,
@@ -32,7 +32,7 @@ export const StartForm = () => {
     }
 
     const goToRoom = (id) => {
-        return fetch("http://localhost:3000/api/user/add_room", {
+        return fetch("../../api/user/add_room", {
             method: 'POST',
             body: JSON.stringify({
                 code: code,
@@ -42,7 +42,7 @@ export const StartForm = () => {
             if (data.success) {
                 router.push({
                     pathname: '/item/question',
-                    query: { id: data.data._id },
+                    query: { id: data.data._id, userId: id },
                 })
             } else if (data.message === "Le code est incorrect") {
                 alert('Code pin incorrect')

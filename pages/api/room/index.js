@@ -18,7 +18,7 @@ export default async function handler(req, res) {
     case 'POST':
       try {
         const room = await Room.create(
-          req.body
+          JSON.parse(req.body)
         ) /* create a new model in the database */
         res.status(201).json({ success: true, data: room })
       } catch (error) {

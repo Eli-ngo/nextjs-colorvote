@@ -6,6 +6,9 @@ import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import io from 'Socket.IO-client'
+
+let socket;
 
 const LiveSession = () => {
 
@@ -181,12 +184,18 @@ const LiveSession = () => {
     const [currentSlide, setCurrentSlide] = useState(1)
 
     const getRoom = () => {
-        return fetch(`http://localhost:3000/api/room/63bdef8c2461af1e8aac42c0`)
+        return fetch(`../../api/room/63bdef8c2461af1e8aac42c0`)
         .then(res => res.json().then(data => {
-            console.log(data)
             setRoom(data.data)
         }))
     }
+
+    useEffect(() => socketInitializer(), [])
+
+    const socketInitializer = async () => {
+        await fetch('../../api/socket')
+        socket = io()
+      }
 
     useEffect(() => {
         getRoom()
@@ -232,6 +241,7 @@ const LiveSession = () => {
             setCurrentSlide(1)
         } else {
             setCurrentSlide(currentSlide - 1)
+            socket.emit('itemSlide', currentSlide)
         }
     }
 
@@ -240,6 +250,7 @@ const LiveSession = () => {
             setCurrentSlide(room.question.length)
         } else {
             setCurrentSlide(currentSlide + 1)
+            socket.emit('itemSlide', currentSlide)
         }
     }
 
@@ -267,7 +278,7 @@ const LiveSession = () => {
                                 <div className="sidebarRight__bottom--left">
                                     <div className="sidebarRight__bottom--left__current">
                                         <div className="sidebarRight__bottom--left__slides">
-                                            <button onClick={prevItem}> ⬅️ </button>
+                                            {/* <button onClick={prevItem}> ⬅️ </button> */}
                                                 <h2>Question {currentSlide}/{room.question.length}</h2>
                                             <button onClick={nextItem}> ➡️ </button>
                                         </div>
