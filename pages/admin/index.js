@@ -1,15 +1,14 @@
-import Head from 'next/head'
-import Sidebar from '../../components/Sidebar'
-import styled from 'styled-components'
-import Image from 'next/image'
+import Head from "next/head";
+import Sidebar from "../../components/Sidebar";
+import styled from "styled-components";
+import Image from "next/image";
 
 const Dashboard = () => {
-
     const DashboardStyle = styled.div`
         display: flex;
-        font-family: 'Poppins', sans-serif;
+        font-family: "Poppins", sans-serif;
 
-        .sidebarRight{
+        .sidebarRight {
             background: #f4f4f4;
             padding: 40px;
             width: 85%;
@@ -17,24 +16,24 @@ const Dashboard = () => {
             height: 100vh;
 
             /* TOP PART */
-            &__top{
+            &__top {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 margin-bottom: 20px;
 
-                &--right{
+                &--right {
                     display: flex;
                     gap: 40px;
 
-                    &__display{
+                    &__display {
                         padding: 10px 40px;
                     }
                 }
 
-                &--left{
-                    h1{
-                        span{
+                &--left {
+                    h1 {
+                        span {
                             font-weight: lighter;
                         }
                     }
@@ -42,18 +41,18 @@ const Dashboard = () => {
             }
 
             /* BOTTOM PART */
-            &__bottom{
+            &__bottom {
                 display: flex;
                 flex-direction: column;
                 gap: 30px;
 
-                &--bottom1{
+                &--bottom1 {
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     gap: 30px;
 
-                    &__startsession{
+                    &__startsession {
                         width: 50%;
                         padding: 30px 60px;
                         background: #ffffff;
@@ -65,12 +64,12 @@ const Dashboard = () => {
                         flex-direction: column;
                         gap: 20px;
 
-                        h1{
+                        h1 {
                             font-size: 1.7rem;
-                            color: #1363DA;
+                            color: #1363da;
                         }
                     }
-                    &__inprogress{
+                    &__inprogress {
                         width: 50%;
                         padding: 30px 60px;
                         background: #ffffff;
@@ -82,19 +81,19 @@ const Dashboard = () => {
                         flex-direction: column;
                         gap: 20px;
 
-                        h1{
+                        h1 {
                             font-size: 1.7rem;
-                            color: #1363DA;
+                            color: #1363da;
                         }
                     }
                 }
-                &--bottom2{
+                &--bottom2 {
                     display: flex;
                     justify-content: center;
                     align-items: flex-start;
                     gap: 30px;
 
-                    &__lastsessions{
+                    &__lastsessions {
                         width: 50%;
                         padding: 30px 60px;
                         background: #ffffff;
@@ -106,27 +105,26 @@ const Dashboard = () => {
                         flex-direction: column;
                         gap: 30px;
 
-                        h1{
+                        h1 {
                             font-size: 1.7rem;
-                            color: #1363DA;
+                            color: #1363da;
                         }
-
                     }
 
-                    &__session{
-                            display: flex;
-                            flex-direction: row;
-                            justify-content: space-between;
-                            align-items: center;
-                            gap: 160px;
+                    &__session {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                        gap: 160px;
 
-                            h2{
-                                font-size: 1rem;
-                                color: #1363DA;
-                            }
+                        h2 {
+                            font-size: 1rem;
+                            color: #1363da;
                         }
+                    }
 
-                    &__graph{
+                    &__graph {
                         width: 50%;
                         padding: 30px 60px;
                         background: #ffffff;
@@ -138,18 +136,17 @@ const Dashboard = () => {
                         align-items: center;
                         gap: 30px;
 
-                        h1{
+                        h1 {
                             text-align: center;
                             font-size: 1.7rem;
-                            color: #1363DA;
+                            color: #1363da;
                         }
                     }
                 }
-
             }
         }
-        .submitButton{
-            background: #1363DA;
+        .submitButton {
+            background: #1363da;
             color: #ffffff;
             padding: 10px 60px;
             text-align: center;
@@ -157,9 +154,9 @@ const Dashboard = () => {
             font-size: 1rem;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-            &__secondary{
-                background: #DCE8F9;
-                color: #1363DA;
+            &__secondary {
+                background: #dce8f9;
+                color: #1363da;
                 padding: 10px 60px;
                 text-align: center;
                 border-radius: 10px;
@@ -167,32 +164,41 @@ const Dashboard = () => {
                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             }
         }
-    `
+    `;
 
-    return(
+    return (
         <>
             <Head>
                 <title>ColorVote ADMIN | Dashboard</title>
             </Head>
             <DashboardStyle>
-                <Sidebar />
+                <Sidebar active="home" />
                 <div className="sidebarRight">
                     <div className="sidebarRight__top">
                         <div className="sidebarRight__top--left">
-                            <h1>Tableau de bord - <span>13/01/2023</span> </h1>
+                            <h1>
+                                Tableau de bord - <span>13/01/2023</span>{" "}
+                            </h1>
                         </div>
                     </div>
                     <div className="sidebarRight__bottom">
                         <div className="sidebarRight__bottom--bottom1">
                             <div className="sidebarRight__bottom--bottom1__startsession">
                                 <h1>Démarrer une session</h1>
-                                <p>Créez une nouvelle session en 2 minutes chrono !</p>
-                                <button className="submitButton">Commencer</button>
+                                <p>
+                                    Créez une nouvelle session en 2 minutes
+                                    chrono !
+                                </p>
+                                <button className="submitButton">
+                                    Commencer
+                                </button>
                             </div>
                             <div className="sidebarRight__bottom--bottom1__inprogress">
                                 <h1>Session en cours</h1>
                                 <p>Aucune session en cours pour le moment.</p>
-                                <button className="submitButton">Reprendre</button>
+                                <button className="submitButton">
+                                    Reprendre
+                                </button>
                             </div>
                         </div>
                         <div className="sidebarRight__bottom--bottom2">
@@ -216,20 +222,30 @@ const Dashboard = () => {
                                         <p>22/11/2022</p>
                                     </div>
                                 </div>
-                                <button className="submitButton__secondary">Voir toutes les sessions</button>
+                                <button className="submitButton__secondary">
+                                    Voir toutes les sessions
+                                </button>
                             </div>
                             <div className="sidebarRight__bottom--bottom2__graph">
-                                <h1>Votes de la dernière session - "Concerts"</h1>
-                                <Image src='/piechart.png' width={400} height={280} alt='votes'/>
-                                <button className="submitButton__secondary">Accéder aux résultats</button>
+                                <h1>
+                                    Votes de la dernière session - "Concerts"
+                                </h1>
+                                <Image
+                                    src="/piechart.png"
+                                    width={400}
+                                    height={280}
+                                    alt="votes"
+                                />
+                                <button className="submitButton__secondary">
+                                    Accéder aux résultats
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </DashboardStyle>
-
         </>
-    )
-}
+    );
+};
 
-export default Dashboard
+export default Dashboard;

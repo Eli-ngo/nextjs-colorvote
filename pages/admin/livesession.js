@@ -11,45 +11,43 @@ import io from 'Socket.IO-client'
 let socket;
 
 const LiveSession = () => {
-
     const SessionStyle = styled.div`
         display: flex;
-        font-family: 'Poppins', sans-serif;
+        font-family: "Poppins", sans-serif;
 
-        .sidebarRight{
+        .sidebarRight {
             padding: 40px;
             background: #f4f4f4;
             width: 85%;
             margin-left: 15%;
             height: 100vh;
 
-            &__top{
+            &__top {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
 
-                &--left{
+                &--left {
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     gap: 20px;
 
-                    h1{
-                        span{
+                    h1 {
+                        span {
                             font-weight: lighter;
                         }
                     }
-
                 }
 
-                &--right{
+                &--right {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                     gap: 30px;
 
-                    &__display{
-                        background: #EBEBEB;
+                    &__display {
+                        background: #ebebeb;
                         color: #a7a7a7;
                         padding: 10px 60px;
                         text-align: center;
@@ -58,8 +56,8 @@ const LiveSession = () => {
                         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                     }
 
-                    &__stop{
-                        background: #D11A2A;
+                    &__stop {
+                        background: #d11a2a;
                         color: #ffffff;
                         padding: 10px 60px;
                         text-align: center;
@@ -70,17 +68,17 @@ const LiveSession = () => {
                 }
             }
 
-            &__bottom{
+            &__bottom {
                 margin-top: 30px;
                 display: flex;
                 gap: 30px;
 
-                &--left{
+                &--left {
                     width: 60%;
                     display: flex;
                     flex-direction: column;
                     gap: 30px;
-                    &__current{
+                    &__current {
                         padding: 30px 60px;
                         background: #ffffff;
                         border-radius: 20px;
@@ -90,20 +88,19 @@ const LiveSession = () => {
                         align-items: center;
                         flex-direction: column;
 
-                        h2{
+                        h2 {
                             font-size: 1.7rem;
-                            color: #1363DA;
+                            color: #1363da;
                         }
                     }
 
-                    &__slides{
+                    &__slides {
                         display: flex;
                         justify-content: space-between;
                         gap: 100px;
-
                     }
 
-                    &__details{
+                    &__details {
                         padding: 30px 60px;
                         background: #ffffff;
                         border-radius: 20px;
@@ -114,13 +111,13 @@ const LiveSession = () => {
                         align-items: center;
                         gap: 20px;
 
-                        h2{
+                        h2 {
                             font-size: 1.7rem;
-                            color: #1363DA;
+                            color: #1363da;
                         }
                     }
-                    
-                    &__name{
+
+                    &__name {
                         display: flex;
                         flex-direction: row;
                         justify-content: center;
@@ -128,7 +125,7 @@ const LiveSession = () => {
                         gap: 20px;
                     }
 
-                    &__actions{
+                    &__actions {
                         display: flex;
                         flex-direction: row;
                         justify-content: center;
@@ -136,7 +133,7 @@ const LiveSession = () => {
                         gap: 20px;
                     }
 
-                    &__item{
+                    &__item {
                         display: flex;
                         flex-direction: row;
                         justify-content: space-between;
@@ -147,9 +144,9 @@ const LiveSession = () => {
                     }
                 }
 
-                &--right{
+                &--right {
                     width: 40%;
-                    &__participants{
+                    &__participants {
                         padding: 30px 60px;
                         background: #ffffff;
                         border-radius: 20px;
@@ -160,17 +157,17 @@ const LiveSession = () => {
                         flex-direction: column;
                         gap: 20px;
 
-                        h2{
+                        h2 {
                             font-size: 1.7rem;
-                            color: #1363DA;
+                            color: #1363da;
                         }
                     }
                 }
             }
         }
-        .submitButton{
-            background: #DCE8F9;
-            color: #1363DA;
+        .submitButton {
+            background: #dce8f9;
+            color: #1363da;
             padding: 10px 60px;
             text-align: center;
             border-radius: 10px;
@@ -263,7 +260,7 @@ const LiveSession = () => {
                     <title>Colorvote ADMIN | Session en cours</title>
                 </Head>
                 <SessionStyle>
-                    <Sidebar />
+                    <Sidebar active="session"/>
                     <div className="sidebarRight">
                         <div className="sidebarRight__top">
                             <div className="sidebarRight__top--left">
@@ -308,4 +305,4 @@ const LiveSession = () => {
     }
 }
 
-export default LiveSession
+export default LiveSession;
