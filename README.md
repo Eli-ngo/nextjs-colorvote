@@ -50,7 +50,9 @@ Ce projet utilise le langage NextJS pour le front et le back. Comme base de donn
 
 ## Nos pratiques pour mener à bien ce projet
 
-Nous avions créee 4 branches en tout pour éviter le plus de conflits possibles : master - back - front-ellie - front-sarah. La branche Master étant notre branche de production
+Nous avions créee 4 branches en tout pour éviter le plus de conflits possibles : master - back - front-ellie - front-sarah. La branche Master étant notre branche de production.
+
+Nous codons en SASS à l'aide de la dépendance Styled-Components et les nommons à l'aide de la méthode BEM : Block__Element--Modifier
 
 ## Notre groupe est composé de :
 - Yassine Souissy
