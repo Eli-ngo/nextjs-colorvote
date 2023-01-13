@@ -33,7 +33,7 @@ Ce projet utilise le langage NextJS pour le front et le back. Comme base de donn
 Nous avions créee 4 branches en tout pour éviter le plus de conflits possibles : master - back - front-ellie - front-sarah. La branche Master étant notre branche de production
 
 ## Notre groupe est composé de :
-- Yassine Souissi
+- Yassine Souissy
 - Elisabeth Ngo
 - Sarah Hitier
 - Ulysse Rouard
