@@ -6,13 +6,13 @@ L'application possède 2 interfaces :
 - Une interface pour un invité sur laquelle il peut voter en inscrivant un code PIN que l'admin lui aura au préalable communiqué. L'invité devra ensuite répondre à plusieurs anecdotes/questions qui défilent et clique sur une couleur pour donner son avis.
 
 ```bash
-*Vert foncé s'il est tout à fait d'accord*
-*Vert clair s'il est d'accord*
-*Orange, s'il est mitigé*
-*Rouge clair s'il n'est pas d'accord*
-*Rouge foncé s'il n'est pas du tout d'accord*
-*Blanc s'il ne sait pas quoi répondre*
-*La personne peut aussi décider de ne pas répondre, la couleur affectée à sa réponse est alors le noir.*
+Vert foncé s'il est tout à fait d'accord
+Vert clair s'il est d'accord
+Orange, s'il est mitigé
+Rouge clair s'il n'est pas d'accord
+Rouge foncé s'il n'est pas du tout d'accord
+Blanc s'il ne sait pas quoi répondre
+La personne peut aussi décider de ne pas répondre, la couleur affectée à sa réponse est alors le noir.
 ```
 
 - Une interface pour un admin sur laquelle il peut créer une session, des questions et visualiser à la fin, les résultats des participants. L'admin est celui qui décide de passer à la question suivante à l'aide d'un bouton
