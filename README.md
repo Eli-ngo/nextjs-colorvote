@@ -6,7 +6,13 @@ L'application possède 2 interfaces :
 
 ## Comment lancer l'application
 
-1/ Installer toutes les dépendances
+1/ Cloner le projet
+
+```bash
+git clone https://github.com/Eli-ngo/nextjs-colorvote
+```
+
+2/ Installer toutes les dépendances
 
 ```bash
 npm i
@@ -14,7 +20,7 @@ npm i
 yarn i
 ```
 
-2/ Lancer le serveur
+3/ Lancer le serveur
 
 ```bash
 npm run dev
@@ -22,7 +28,7 @@ npm run dev
 yarn dev
 ```
 
-3/ Ouvrir le navigateur avec http://localhost:3000
+4/ Ouvrir le navigateur avec http://localhost:3000
 
 ## Notre stack
 
