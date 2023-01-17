@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
 
-const connectMongo = async () => mongoose.connect("mongodb+srv://richine:richine123@cluster0.3jrtdhw.mongodb.net/?retryWrites=true&w=majority");
+const connectMongo = async () => mongoose.connect(process.env.MONGODB_URI);
 
 export default connectMongo;

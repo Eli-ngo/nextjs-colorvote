@@ -25,10 +25,14 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# local env files
+# env files
+.env
 .env*.local
 
 # vercel
 .vercel
 
-.vercel
+# PWA
+/public/workbox-*.js
+/public/sw.js
+/public/sw.js.map
